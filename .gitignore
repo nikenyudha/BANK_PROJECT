@@ -1,0 +1,25 @@
+# === Virtual Environment ===
+venv/
+.venv/
+env/
+ENV/
+
+# === Python Cache & Compiled Files ===
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+doc/build/
+.pytest_cache/
+
+# === Database Lokal (Wajib Di-ignore!) ===
+# Kita tidak ingin history testing di laptop kita mengotori server cloud
+*.db
+*.sqlite3
+
+# === OS & IDE Metadata ===
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
