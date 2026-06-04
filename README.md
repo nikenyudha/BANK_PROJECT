@@ -3,6 +3,8 @@
 An enterprise-grade, production-ready MLOps project that deploys a highly optimized LightGBM model to predict customer conversion for bank term deposits. This system goes beyond model training by implementing a fully automated serving API via FastAPI, robust request logging via SQLite, a remote model registry on Hugging Face Hub, and an automated data drift detection system.
 
 ---
+## 🔗 Live Demo API
+**Swagger UI Documentation:** [Live FastAPI in Hugging Face](https://nikenlarash22-bank-marketing-api.hf.space/docs)
 
 ## 🗺️ System Architecture
 
