@@ -20,7 +20,7 @@ app = FastAPI(
 )
 
 # Konfigurasi Hugging Face
-HF_REPO_ID = "nikenlarash22/bank-marketing-model"
+HF_REPO_ID = "nikenlarash22/bank-model-lightbgm"
 
 # Variabel global untuk menampung model dan skema kolom di memori
 model = None
