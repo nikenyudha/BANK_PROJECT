@@ -15,7 +15,7 @@ DB_FILE = os.path.join(BASE_DIR, "production_logs.db")
 
 app = FastAPI(
     title="Bank Marketing Predictor API (Hugging Face Edition)",
-    description="API level Senior dengan Request Logging otomatis ke SQLite.",
+    description="API with automatic Request Logging to SQLite by niken larasati 💗 ",
     version="1.1.0"
 )
 
