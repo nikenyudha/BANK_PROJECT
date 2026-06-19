@@ -14,7 +14,7 @@ doc/build/
 .pytest_cache/
 
 # === Database Lokal (Wajib Di-ignore!) ===
-# Kita tidak ingin history testing di laptop kita mengotori server cloud
+# agar history testing di laptop tidak mengotori server cloud
 *.db
 *.sqlite3
 
