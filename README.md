@@ -55,13 +55,10 @@ During the Exploratory Data Analysis (EDA) and experimental phase, several criti
 ```
 
 ## 🧠 Personal Reflections & Engineering Growth
-- Building this end-to-end ecosystem provided immense engineering growth and reshaped my perspective on machine learning projects:
+- Building this end-to-end ecosystem provided immense engineering growth and reshaped my perspective on machine learning projects
 - MLOps is Superior to Static Modeling: A model with 95% accuracy is completely useless if it sits as a static file on a local computer. Learning how to package features into an abstract Pydantic contract and serving it live via FastAPI bridged the gap between pure data science and software engineering.
 - The Danger of Data Over-Confidence: Witnessing how easily an economic shift (drift) can degrade model assumptions taught me that model deployment is never a "one-and-done" task. Continuous monitoring is mandatory.
 - Infrastructural Efficiency: Transitioning from heavy local storage dependencies to an automated cloud architecture (pushing/pulling from Hugging Face Hub using Fine-Grained tokens) proved that production systems must be lightweight, secure, and decoupled.
 
 
-
-
-
-
+created by: niken larasati
