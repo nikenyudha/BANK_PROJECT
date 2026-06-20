@@ -61,8 +61,8 @@ def check_data_drift():
         print(f"Alasan: {', '.join(reasons)}")
         print("🔄 Memulai Proses RETRAINING OTOMATIS... Mengirim instruksi ke pipeline training...")
         
-        # Di level industri, di bagian ini kita menembak webhook (misal ke Airflow atau Jenkins)
-        # untuk menjalankan ulang file notebook Colab kita secara otomatis dari atas ke bawah.
+        # Di level industri, di bagian ini menembak webhook (misal ke Airflow atau Jenkins)
+        # untuk menjalankan ulang file notebook Colab  secara otomatis dari atas ke bawah.
         trigger_pipeline_retraining()
     else:
         print("\n✅ Aman! Kondisi data lapangan masih stabil dan sesuai dengan performa model saat ini.")

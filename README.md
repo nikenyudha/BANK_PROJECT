@@ -1,22 +1,25 @@
 # End-to-End Bank Marketing MLOps Pipeline with Automated Logging & Drift Detection
 
-An enterprise-grade, production-ready MLOps project that deploys a highly optimized LightGBM model to predict customer conversion for bank term deposits. This system goes beyond model training by implementing a fully automated serving API via FastAPI, robust request logging via SQLite, a remote model registry on Hugging Face Hub, and an automated data drift detection system.
+An enterprise-grade, production-ready MLOps project that deploys a highly optimized LightGBM model to predict customer conversion for bank term deposits. This system goes beyond model training by implementing a fully automated containerized serving API via FastAPI, robust request logging via SQLite, continuous integration and deployment (CI/CD) via GitHub Actions, and container hosting on Google Cloud Platform.
 
 ---
 ## 🔗 Live Demo API
-**Swagger UI Documentation:** [Live FastAPI in Hugging Face](https://nikenlarash22-bank-marketing-api.hf.space/docs)
+* **Interactive API Documentation:** [Live FastAPI on Google Cloud Run](https://bank-marketing-app-139306662622.asia-southeast1.run.app/docs) *(Automated Deployment)*
+* **Legacy Space:** [FastAPI on Hugging Face Spaces](https://nikenlarash22-bank-marketing-api.hf.space/docs)
 
-## 🗺️ System Architecture
+## 🗺️ System Architecture & CI/CD Pipeline
 
-The following diagram illustrates the complete end-to-end data flow of the system, showcasing the separation between the Research/Training phase and the live Production/Monitoring phase.
+The following diagram illustrates the complete end-to-end data flow and infrastructure automation of the system, showcasing the decoupling between the Training Phase and the live, automated Production deployment phase.
 
 ![MLOps Architecture](architecture_diagram.png)
 
-### Data Flow Overview:
+### Data Flow & Automation Overview:
 1. **Model Registry:** The LightGBM model is trained in Google Colab and automatically pushed to the Hugging Face Hub Registry.
-2. **Model Serving:** FastAPI downloads the model on startup and serves live predictions via the `/predict` endpoint.
-3. **Request Logging:** Every live API request and inference score is captured asynchronously into an absolute-pathed SQLite database (`production_logs.db`).
-4. **Drift Monitoring:** A standalone script monitors the database logs to detect statistical anomalies and trigger automated retraining alerts.
+2. **Containerization (Docker):** The FastAPI application is containerized locally/remotely using a multi-stage `Dockerfile` to enforce environment consistency.
+3. **Continuous Integration (GitHub Actions):** Every code push to the `main` branch triggers an automated workflow that authenticates to GCP, builds the Docker image, and pushes it to **Google Artifact Registry**.
+4. **Continuous Deployment (Google Cloud Run):** The fresh image is instantly pulled and serving live production traffic as a serverless microservice on **Google Cloud Run** (`asia-southeast1`).
+5. **Request Logging:** Every live API request and inference score is captured asynchronously into an absolute-pathed SQLite database (`production_logs.db`).
+6. **Drift Monitoring:** A standalone script monitors the database logs to detect statistical anomalies and trigger automated retraining alerts.
 
 ---
 
@@ -42,23 +45,37 @@ During the Exploratory Data Analysis (EDA) and experimental phase, several criti
 
 ---
 
-## 🛠️ Project Structure
+## 🛠️ Project Structure & Infrastructure Stack
+
+### MLOps Infrastructure:
+* **CI/CD Automation:** GitHub Actions
+* **Containerization Engine:** Docker
+* **Cloud Platform Hosting:** Google Cloud Platform (Artifact Registry & Cloud Run)
 
 ```text
+├── .github/
+│   └── workflows/
+│       └── deploy.yml               # GitHub Actions CI/CD deployment configurations
 ├── notebooks/
-│   ├── banking_model_training_and_pseudo_labeling.ipynb   # Exploratory Data Analysis & Baseline LightGBM Training, Advanced Semi-Supervised Learning & Hugging Face Auto-Push
+│   ├── banking_model_training_and_pseudo_labeling.ipynb   # EDA, Baseline LightGBM & HF Auto-Push
 ├── app.py                           # Production FastAPI Server with SQLite Logging
 ├── drift_detector.py                # Automated Rules-Based Data Drift Detector
+├── Dockerfile                       # Production container blueprint
 ├── requirements.txt                 # Project dependencies for cloud deployment
 ├── runtime.txt                      # Explicit Python versioning
 └── .gitignore                       # Ensures local venv and databases are not tracked
+
 ```
 
 ## 🧠 Personal Reflections & Engineering Growth
-- Building this end-to-end ecosystem provided immense engineering growth and reshaped my perspective on machine learning projects
-- MLOps is Superior to Static Modeling: A model with 95% accuracy is completely useless if it sits as a static file on a local computer. Learning how to package features into an abstract Pydantic contract and serving it live via FastAPI bridged the gap between pure data science and software engineering.
-- The Danger of Data Over-Confidence: Witnessing how easily an economic shift (drift) can degrade model assumptions taught me that model deployment is never a "one-and-done" task. Continuous monitoring is mandatory.
-- Infrastructural Efficiency: Transitioning from heavy local storage dependencies to an automated cloud architecture (pushing/pulling from Hugging Face Hub using Fine-Grained tokens) proved that production systems must be lightweight, secure, and decoupled.
+Building this end-to-end ecosystem provided immense engineering growth and reshaped my perspective on machine learning projects.
 
+MLOps is Superior to Static Modeling: A model with 95% accuracy is completely useless if it sits as a static file on a local computer. Learning how to package features into an abstract Pydantic contract, containerize it using Docker, and serve it live via FastAPI and Google Cloud Run bridged the gap between pure data science and software engineering.
 
-created by: niken larasati
+Automated CI/CD & Cloud Infrastructure: Implementing GitHub Actions workflows to manage continuous integration taught me the immense power of automated testing, building, and deployment pipelines. Transitioning to Google Cloud Run provided deep experience in production-level environment variables, secure IAM service accounts, and enterprise artifact management.
+
+The Danger of Data Over-Confidence: Witnessing how easily an economic shift (drift) can degrade model assumptions taught me that model deployment is never a "one-and-done" task. Continuous monitoring is mandatory.
+
+Infrastructural Efficiency: Transitioning from heavy local storage dependencies to an automated cloud architecture (pushing/pulling from Hugging Face Hub using Fine-Grained tokens) proved that production systems must be lightweight, secure, and decoupled.
+
+Created by: Niken Larasati Winasih

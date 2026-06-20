@@ -3,13 +3,13 @@ name: Build and Deploy to GCP
 on:
   push:
     branches:
-      - main  # Ganti ke 'master' jika nama branch utama kamu adalah master
+      - main  # nama branch yang akan memicu workflow ini
 
 env:
-  PROJECT_ID: bank-marketing-mlops-499902  # ID Project GCP kamu
-  GAR_LOCATION: asia-southeast1             # Region GCP kamu
+  PROJECT_ID: bank-marketing-mlops-499902  # ID Project GCP 
+  GAR_LOCATION: asia-southeast1             # Region GCP 
   REPOSITORY: banking-ml-model              # Nama Artifact Registry
-  IMAGE_NAME: bank-marketing-app            # Nama bebas untuk image aplikasi kamu
+  IMAGE_NAME: bank-marketing-app            # Nama bebas untuk image aplikasi 
 
 jobs:
   setup-build-publish-deploy:
