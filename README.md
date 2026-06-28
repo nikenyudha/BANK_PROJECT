@@ -7,11 +7,30 @@ An enterprise-grade, production-ready MLOps project that deploys a highly optimi
 * **Interactive API Documentation:** [Live FastAPI on Google Cloud Run](https://bank-marketing-app-139306662622.asia-southeast1.run.app/docs) *(Automated Deployment)*
 * **Legacy Space:** [FastAPI on Hugging Face Spaces](https://nikenlarash22-bank-marketing-api.hf.space/docs)
 
+
+## 📊 Machine Learning Experiment Tracking (MLflow)
+
+To maintain model reproducibility and track performance across different architectures, **MLflow** was integrated into the training pipeline. 
+
+### Experiments Run:
+- **Exploratory Data Analysis (EDA)**: Initial data shape and baseline checks.
+- **Baseline Logistic Regression**: Simple benchmark model.
+- **Advanced LightGBM Model**: Optimized gradient boosting tree.
+- **Pseudo-Labeling Experiment**: Semi-supervised approach to leverage unlabelled data.
+
+
+#### Model Performance Comparison (MLflow Chart View)
+![Metrics Comparison](images/mlflow_metrics_comparison.png)
+
+- **Pseudo-Labeling Experiment** achieved the highest ROC-AUC of **0.96**.
+- **Advanced LightGBM Model** reached a PR-AUC of **0.70**.
+- **Baseline Logistic Regression** maintained a stable training accuracy score of **0.91**.
+
 ## 🗺️ System Architecture & CI/CD Pipeline
 
 The following diagram illustrates the complete end-to-end data flow and infrastructure automation of the system, showcasing the decoupling between the Training Phase and the live, automated Production deployment phase.
 
-![MLOps Architecture](architecture_diagram.png)
+![MLOps Architecture](images/architecture_diagram.png)
 
 ### Data Flow & Automation Overview:
 1. **Model Registry:** The LightGBM model is trained in Google Colab and automatically pushed to the Hugging Face Hub Registry.
