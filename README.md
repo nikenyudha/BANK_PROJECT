@@ -22,7 +22,7 @@ graph LR
 1. **Model Registry:** The LightGBM model is trained in Google Colab and automatically pushed to the Hugging Face Hub Registry.
 2. **Containerization (Docker):** The FastAPI application is containerized locally/remotely using a multi-stage `Dockerfile` to enforce environment consistency.
 3. **Continuous Integration (GitHub Actions):** Every code push to the `main` branch triggers an automated workflow that authenticates to GCP, builds the Docker image, and pushes it to **Google Artifact Registry**.
-4. **Continuous Deployment (Google Cloud Run):** The fresh image is instantly pulled and serving live production traffic as a serverless microservice on **Google Cloud Run** (`asia-southeast1`).
+4. **Continuous Deployment (Google Cloud Run):** The fresh image is instantly pulled and serving live production traffic as a serverless microservicg on **Google Cloud Run** (`asia-southeast1`).
 5. **Request Logging:** Every live API request and inference score is captured asynchronously into an absolute-pathed SQLite database (`production_logs.db`).
 6. **Drift Monitoring:** A standalone script monitors the database logs to detect statistical anomalies and trigger automated retraining alerts.
 
@@ -69,7 +69,7 @@ To maintain model reproducibility and track performance across different archite
 ### 📊 Model Interpretability & Feature Importance
 To understand how the LightGBM model makes decisions, we evaluated both **Gain** (contribution to accuracy) and **Split** (frequency of use) importance.
 ![Feature Importance Gain](images/feature_importance_gain_lightbgm.png)
-![Feature Importance Split](images/feature_importance_split_lightbgm.png)
+![Feature Importance Split](images/feature_importance_split_light_bgm.png)
 
 
 ### Model Containerization
@@ -129,4 +129,4 @@ The Danger of Data Over-Confidence: Witnessing how easily an economic shift (dri
 
 Infrastructural Efficiency: Transitioning from heavy local storage dependencies to an automated cloud architecture (pushing/pulling from Hugging Face Hub using Fine-Grained tokens) proved that production systems must be lightweight, secure, and decoupled.
 
-Created by: Niken Larasati Winasih
+**Created by: Niken Larasati Winasih**
