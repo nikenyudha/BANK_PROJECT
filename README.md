@@ -9,7 +9,6 @@ An enterprise-grade, production-ready MLOps project that deploys a highly optimi
 
 
 ## 📊 Machine Learning Experiment Tracking (MLflow)
-
 To maintain model reproducibility and track performance across different architectures, **MLflow** was integrated into the training pipeline. 
 
 ### Experiments Run:
@@ -18,19 +17,37 @@ To maintain model reproducibility and track performance across different archite
 - **Advanced LightGBM Model**: Optimized gradient boosting tree.
 - **Pseudo-Labeling Experiment**: Semi-supervised approach to leverage unlabelled data.
 
-
 #### Model Performance Comparison (MLflow Chart View)
 ![Metrics Comparison](images/mlflow_metrics_comparison.png)
-
 - **Pseudo-Labeling Experiment** achieved the highest ROC-AUC of **0.96**.
 - **Advanced LightGBM Model** reached a PR-AUC of **0.70**.
 - **Baseline Logistic Regression** maintained a stable training accuracy score of **0.91**.
+
+### Model Containerization
+![Model Container 1](images/model_container.png)
+![Model Container 2](images/model_container2.png)
+*The model is packaged using Docker into the Google Artifact Registry (asia-southeast1) to ensure a consistent replication environment with an efficient image size of 252.3 MB.*
+
+### Model Deployment & Serving
+![Model Deployment & Serving](images/gcpcloudrun.png)
+*The application is deployed serverless using Google Cloud Run. The endpoint provides interactive FastAPI documentation (Swagger UI) with automatic prediction features (/predict) and prediction history logging to a SQLite database (/logs).*
+
+### Model API Testing and Validation
+![Before Changes](images/beforetry.png)
+![Response](images/response.png)
+![Succes Response](images/response_succes.png)
+To ensure the model's reliability in a production environment, API testing was conducted directly through the interactive FastAPI documentation on Google Cloud Run. Testing was conducted by simulating the characteristics of new customers by modifying input parameters, such as changing the housing loan status (housing = no) and adjusting the initial productive age group (age = 25).
+Test Results:
+- HTTP Status Code: 200 OK, indicating the Google Cloud Run server successfully processed the JSON payload without error.
+- Latency & Inferences: The model successfully performed inferences in real time and returned predictions of bank marketing conversion opportunities instantly.
+- Data Logging: Each prediction activity is automatically logged to a SQLite database via the integrated request logging component.
+
 
 ## 🗺️ System Architecture & CI/CD Pipeline
 
 The following diagram illustrates the complete end-to-end data flow and infrastructure automation of the system, showcasing the decoupling between the Training Phase and the live, automated Production deployment phase.
 
-![MLOps Architecture](images/architecture_diagram.png)
+<!--![MLOps Architecture](images/architecture_diagram.png)-->
 
 ### Data Flow & Automation Overview:
 1. **Model Registry:** The LightGBM model is trained in Google Colab and automatically pushed to the Hugging Face Hub Registry.
